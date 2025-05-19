@@ -29,7 +29,7 @@ st.title("Cálculo de Distâncias Rodoviárias (HERE API)")
 st.write("Carregue um arquivo Excel com colunas de latitude e longitude para calcular as distâncias entre municípios e filiais.")
 st.markdown(
     """
-    <a href="https://dellavolpecombr-my.sharepoint.com/:x:/g/personal/marcos_silva_dellavolpe_com_br/EfZsiLDG_2tDuOfKbB6dBh8BJcp_EKEZoSvUlyAdDEX3Ww?e=8PqZeE" target="_blank">
+    <a href="https://dellavolpecombr-my.sharepoint.com/personal/marcos_silva_dellavolpe_com_br/_layouts/15/download.aspx?share=EfZsiLDG_2tDuOfKbB6dBh8BJcp_EKEZoSvUlyAdDEX3Ww" target="_blank">
         <button style='background-color: #F7941D; color: white; padding: 10px 24px; border: none; border-radius: 4px; cursor: pointer;'>📥 Baixar modelo de planilha</button>
     </a>
     """,
