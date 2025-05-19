@@ -27,6 +27,7 @@ def distancia_rota_here(lat_origem, lon_origem, lat_destino, lon_destino):
 
 st.title("Cálculo de Distâncias Rodoviárias (HERE API)")
 st.write("Carregue um arquivo Excel com colunas de latitude e longitude para calcular as distâncias entre municípios e filiais.")
+st.write("Carregue um arquivo Excel com colunas de latitude e longitude para calcular as distâncias entre municípios e filiais.")
 
 arquivo = st.file_uploader("📤 Faça upload do arquivo Excel", type=["xlsx"])
 
