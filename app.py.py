@@ -27,7 +27,15 @@ def distancia_rota_here(lat_origem, lon_origem, lat_destino, lon_destino):
 
 st.title("Cálculo de Distâncias Rodoviárias (HERE API)")
 st.write("Carregue um arquivo Excel com colunas de latitude e longitude para calcular as distâncias entre municípios e filiais.")
-st.write("Arquivo de referência: https://dellavolpecombr-my.sharepoint.com/:x:/g/personal/marcos_silva_dellavolpe_com_br/EfZsiLDG_2tDuOfKbB6dBh8BJcp_EKEZoSvUlyAdDEX3Ww?e=8PqZeE .")
+st.markdown(
+    """
+    <a href="https://dellavolpecombr-my.sharepoint.com/:x:/g/personal/marcos_silva_dellavolpe_com_br/EfZsiLDG_2tDuOfKbB6dBh8BJcp_EKEZoSvUlyAdDEX3Ww?e=8PqZeE" target="_blank">
+        <button style='background-color: #F7941D; color: white; padding: 10px 24px; border: none; border-radius: 4px; cursor: pointer;'>📥 Baixar modelo de planilha</button>
+    </a>
+    """,
+    unsafe_allow_html=True
+)
+
 
 arquivo = st.file_uploader("📤 Faça upload do arquivo Excel", type=["xlsx"])
 
