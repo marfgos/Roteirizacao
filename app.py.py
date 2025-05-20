@@ -25,7 +25,6 @@ def distancia_rota_here(lat_origem, lon_origem, lat_destino, lon_destino):
         st.error(f"Erro ao obter rota HERE: {e} | Dados: {data}")
         return None
 
-@st.cache_data
 def calcular_distancias(df):
     distancias = []
     total_registros = len(df)
@@ -60,25 +59,30 @@ st.markdown(
 arquivo = st.file_uploader("📤 Faça upload do arquivo Excel", type=["xlsx"])
 
 if arquivo is not None:
-    df = pd.read_excel(arquivo)
-    st.success("Arquivo carregado com sucesso!")
+    if 'df_com_distancias' not in st.session_state:
+        df = pd.read_excel(arquivo)
+        st.success("Arquivo carregado com sucesso!")
 
-    total_registros = len(df)
-    tempo_estimado_segundos = total_registros * 0.1
-    tempo_estimado = timedelta(seconds=tempo_estimado_segundos)
-    st.info(f"Tempo estimado de execução: {tempo_estimado}")
+        total_registros = len(df)
+        tempo_estimado_segundos = total_registros * 0.1
+        tempo_estimado = timedelta(seconds=tempo_estimado_segundos)
+        st.info(f"Tempo estimado de execução: {tempo_estimado}")
 
-    df_com_distancias = calcular_distancias(df)
+        df_com_distancias = calcular_distancias(df)
+        st.session_state['df_com_distancias'] = df_com_distancias
 
-    # Salvar resultado em memória para download
-    output = BytesIO()
-    df_com_distancias.to_excel(output, index=False)
-    output.seek(0)
+        # Gerar arquivo Excel em memória e guardar no estado
+        output = BytesIO()
+        df_com_distancias.to_excel(output, index=False)
+        output.seek(0)
+        st.session_state['arquivo_excel'] = output
 
-    st.success("Processo finalizado! Faça o download abaixo:")
+    else:
+        st.success("Arquivo já processado!")
+
     st.download_button(
         label="📥 Baixar arquivo com distâncias",
-        data=output,
+        data=st.session_state['arquivo_excel'],
         file_name=f'Distancias_Rodoviarias_{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}.xlsx',
         mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
     )
